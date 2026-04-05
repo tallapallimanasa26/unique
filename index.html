@@ -1,0 +1,839 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Unique Academy – Learn Vedic Maths with Us!</title>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --sky:#FFF9F0; --sun:#FFD93D; --coral:#FF6B6B; --mint:#6BCB77;
+    --blue:#4D96FF; --purple:#C77DFF; --orange:#FF9A3C; --pink:#FF84B7;
+    --dark:#2D2D2D; --shadow:0 8px 0 rgba(0,0,0,0.10); --r:24px;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  body{font-family:'Nunito',sans-serif;background:var(--sky);color:var(--dark);overflow-x:hidden;}
+
+  /* HEADER */
+  header{background:linear-gradient(135deg,#4D96FF,#C77DFF);padding:18px 28px;display:flex;align-items:center;justify-content:space-between;position:relative;overflow:hidden;}
+  header::before{content:'';position:absolute;inset:0;background:radial-gradient(circle,rgba(255,255,255,0.07) 1px,transparent 1px) 0 0/40px 40px;}
+  .logo{font-family:'Fredoka One',cursive;font-size:2rem;color:#fff;text-shadow:2px 3px 0 rgba(0,0,0,0.15);position:relative;}
+  .logo span{color:var(--sun);}
+  .star-pill{background:rgba(255,255,255,0.2);border:2px solid rgba(255,255,255,0.35);border-radius:50px;padding:7px 16px;color:#fff;font-weight:800;font-size:0.95rem;position:relative;}
+
+  /* HERO */
+  .hero{text-align:center;padding:52px 20px 32px;position:relative;}
+  .hero h1{font-family:'Fredoka One',cursive;font-size:clamp(1.9rem,5vw,3.4rem);line-height:1.2;margin-bottom:12px;}
+  .hi{color:var(--blue);}
+  .hero p{font-size:1.1rem;color:#555;max-width:520px;margin:0 auto 6px;font-weight:700;}
+  .vedic-badge{display:inline-block;background:linear-gradient(135deg,#ff9a3c,#ff6b6b);color:#fff;font-family:'Fredoka One',cursive;font-size:1rem;padding:8px 22px;border-radius:50px;margin-top:14px;box-shadow:0 4px 0 rgba(200,60,0,0.18);animation:pulse 2.5s ease-in-out infinite;}
+  @keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.05)}}
+  .floaters{position:absolute;inset:0;pointer-events:none;overflow:hidden;}
+  .floater{position:absolute;font-size:2rem;opacity:0.5;animation:floatUp 6s ease-in-out infinite;}
+  .floater:nth-child(1){top:10%;left:4%;animation-delay:0s}
+  .floater:nth-child(2){top:18%;right:6%;animation-delay:1s}
+  .floater:nth-child(3){top:55%;left:8%;animation-delay:2s}
+  .floater:nth-child(4){top:60%;right:5%;animation-delay:.5s}
+  .floater:nth-child(5){top:35%;left:1%;animation-delay:3s}
+  .floater:nth-child(6){top:40%;right:2%;animation-delay:1.5s}
+  @keyframes floatUp{0%,100%{transform:translateY(0) rotate(0deg)}50%{transform:translateY(-18px) rotate(8deg)}}
+
+  /* SECTION TITLES */
+  .sec-title{font-family:'Fredoka One',cursive;font-size:1.75rem;text-align:center;margin-bottom:8px;color:var(--dark);}
+  .sec-sub{text-align:center;color:#888;font-weight:700;font-size:0.9rem;margin-bottom:24px;padding:0 20px;}
+
+  /* TOPIC GRID */
+  .topics{display:grid;grid-template-columns:repeat(auto-fit,minmax(155px,1fr));gap:18px;max-width:920px;margin:0 auto 50px;padding:0 22px;}
+  .topic-card{background:#fff;border-radius:var(--r);padding:26px 14px 18px;text-align:center;cursor:pointer;box-shadow:var(--shadow);transition:transform .15s,box-shadow .15s;position:relative;overflow:hidden;}
+  .topic-card::before{content:'';position:absolute;top:0;left:0;right:0;height:6px;border-radius:24px 24px 0 0;}
+  .tc1::before{background:var(--coral)} .tc2::before{background:var(--mint)}
+  .tc3::before{background:var(--blue)}  .tc4::before{background:var(--purple)}
+  .tc5::before{background:var(--orange)}.tc6::before{background:var(--pink)}
+  .topic-card:hover{transform:translateY(-6px);box-shadow:0 14px 0 rgba(0,0,0,0.09);}
+  .topic-icon{font-size:2.6rem;display:block;margin-bottom:10px;}
+  .topic-card h3{font-family:'Fredoka One',cursive;font-size:1.05rem;margin-bottom:4px;}
+  .topic-card p{font-size:0.77rem;color:#999;font-weight:700;}
+
+  /* LEARN PANEL */
+  .learn-panel{display:none;max-width:900px;margin:0 auto 50px;padding:0 22px;}
+  .learn-panel.open{display:block;}
+  .learn-card{background:#fff;border-radius:28px;padding:34px 30px;box-shadow:var(--shadow);border-left:8px solid var(--blue);animation:slideIn .3s ease;}
+  .learn-card h2{font-family:'Fredoka One',cursive;font-size:1.7rem;margin-bottom:12px;color:var(--blue);}
+  .learn-card .lc-body{font-size:1rem;line-height:1.7;color:#555;font-weight:600;margin-bottom:14px;}
+  .eg-row{display:flex;gap:10px;flex-wrap:wrap;margin:14px 0;}
+  .eg-chip{background:linear-gradient(135deg,#f0f7ff,#e5edff);border:2px solid #c3d8ff;border-radius:14px;padding:10px 18px;font-family:'Fredoka One',cursive;font-size:1.1rem;color:var(--blue);animation:popIn .3s ease both;}
+  .tip-box{background:#FFF9E0;border:2px dashed var(--sun);border-radius:16px;padding:14px 18px;display:flex;gap:10px;align-items:flex-start;margin-top:14px;}
+  .tip-box .tip-icon{font-size:1.5rem;flex-shrink:0;}
+  .tip-box p{font-size:0.92rem;color:#7a5f00;font-weight:700;margin:0;}
+  .close-btn{display:inline-block;margin-top:18px;font-family:'Fredoka One',cursive;font-size:0.95rem;padding:9px 22px;background:#f5f5f5;border:2px solid #ddd;border-radius:50px;cursor:pointer;color:#666;transition:all .15s;}
+  .close-btn:hover{background:var(--coral);color:#fff;border-color:var(--coral);}
+
+  /* VEDIC DEMO */
+  .vedic-wrap{background:linear-gradient(160deg,#fff9f0,#f0f5ff);border-radius:36px;max-width:750px;margin:0 auto 60px;padding:36px 28px;border:3px solid rgba(255,154,60,0.2);}
+  .vedic-tabs{display:flex;justify-content:center;gap:8px;flex-wrap:wrap;margin-bottom:22px;}
+  .vedic-tabs button{font-family:'Nunito',sans-serif;font-weight:800;font-size:0.86rem;padding:9px 18px;border:3px solid #e5e5e5;border-radius:50px;cursor:pointer;background:#fff;color:var(--dark);box-shadow:0 3px 0 rgba(0,0,0,0.08);transition:all .15s;}
+  .vedic-tabs button.active,.vedic-tabs button:hover{background:var(--orange);color:#fff;border-color:var(--orange);transform:translateY(-2px);box-shadow:0 5px 0 rgba(200,100,0,0.2);}
+  .v-box{background:#fff;border-radius:24px;padding:26px 24px;box-shadow:var(--shadow);}
+  .sutra-tag{font-size:0.78rem;font-weight:800;color:#bbb;text-transform:uppercase;letter-spacing:1.5px;margin-bottom:8px;}
+  .v-title{font-family:'Fredoka One',cursive;font-size:1.4rem;color:var(--orange);margin-bottom:8px;}
+  .v-intro{font-size:0.95rem;color:#666;font-weight:700;margin-bottom:14px;}
+  .rule-box{background:linear-gradient(135deg,#fff3e0,#ffe5b8);border:2px solid #ffc87a;border-radius:14px;padding:12px 16px;margin-bottom:18px;}
+  .rule-box .r-label{font-size:0.75rem;font-weight:800;color:#a06000;text-transform:uppercase;letter-spacing:1px;}
+  .rule-box p{font-weight:700;color:#7a4000;font-size:0.92rem;margin-top:5px;}
+  .steps-list{display:flex;flex-direction:column;gap:9px;margin-bottom:18px;}
+  .step-item{background:#f9f9ff;border-left:4px solid var(--blue);border-radius:12px;padding:11px 14px;font-weight:700;font-size:0.95rem;color:#333;animation:slideIn .25s ease both;}
+  .step-num{font-family:'Fredoka One',cursive;color:var(--blue);margin-right:6px;}
+  .v-btns{display:flex;gap:12px;flex-wrap:wrap;justify-content:center;}
+  .v-next{font-family:'Fredoka One',cursive;font-size:1.05rem;padding:12px 26px;background:linear-gradient(135deg,var(--orange),#ff6b6b);color:#fff;border:none;border-radius:50px;cursor:pointer;box-shadow:0 5px 0 rgba(180,60,0,0.18);transition:all .15s;}
+  .v-next:hover{transform:translateY(-3px);}
+  .v-new{font-family:'Fredoka One',cursive;font-size:1rem;padding:12px 22px;background:#fff;color:var(--dark);border:3px solid #e0e0e0;border-radius:50px;cursor:pointer;transition:all .15s;}
+  .v-new:hover{border-color:var(--orange);color:var(--orange);}
+
+  /* QUIZ */
+  .quiz-wrap{background:linear-gradient(160deg,#e8f2ff,#f3eaff);border-radius:36px;max-width:700px;margin:0 auto 60px;padding:36px 28px;text-align:center;border:3px solid rgba(77,150,255,0.15);}
+  .op-tabs{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;margin-bottom:24px;}
+  .op-tabs button{font-family:'Nunito',sans-serif;font-weight:800;font-size:0.88rem;padding:10px 20px;border:3px solid transparent;border-radius:50px;cursor:pointer;background:#fff;color:var(--dark);box-shadow:0 4px 0 rgba(0,0,0,0.09);transition:all .15s;}
+  .op-tabs button.active,.op-tabs button:hover{background:var(--blue);color:#fff;border-color:var(--blue);transform:translateY(-2px);box-shadow:0 6px 0 rgba(77,150,255,0.3);}
+  .score-row{display:flex;align-items:center;gap:10px;justify-content:center;margin-bottom:20px;}
+  .score-row span{font-weight:800;color:#777;font-size:0.88rem;}
+  .s-bar{flex:1;max-width:180px;height:10px;background:#ddd;border-radius:99px;overflow:hidden;}
+  .s-fill{height:100%;background:linear-gradient(90deg,var(--mint),var(--blue));border-radius:99px;transition:width .4s;}
+  .s-num{font-family:'Fredoka One',cursive;color:var(--blue);font-size:1rem;}
+  .q-box{background:#fff;border-radius:26px;padding:28px;margin-bottom:20px;box-shadow:var(--shadow);}
+  .q-label{font-size:0.78rem;font-weight:700;color:#bbb;text-transform:uppercase;letter-spacing:2px;margin-bottom:6px;}
+  .q-text{font-family:'Fredoka One',cursive;font-size:2.4rem;color:var(--dark);margin-bottom:20px;letter-spacing:2px;}
+  .ans-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+  .ans-btn{font-family:'Fredoka One',cursive;font-size:1.4rem;padding:14px;border:3px solid #e5e5e5;border-radius:16px;background:#fff;cursor:pointer;transition:all .15s;box-shadow:0 4px 0 #e0e0e0;}
+  .ans-btn:hover:not(:disabled){border-color:var(--blue);color:var(--blue);transform:translateY(-2px);}
+  .ans-btn.correct{background:#e8f9ea;border-color:var(--mint);color:#25833a;box-shadow:0 4px 0 #b8e8c0;}
+  .ans-btn.wrong{background:#ffe8e8;border-color:var(--coral);color:#c0392b;box-shadow:0 4px 0 #f5b7b7;}
+  .feedback{font-family:'Fredoka One',cursive;font-size:1.3rem;min-height:36px;margin-bottom:14px;}
+  .feedback.ok{color:var(--mint);}
+  .feedback.err{color:var(--coral);}
+  .nxt-btn{display:none;font-family:'Fredoka One',cursive;font-size:1.1rem;padding:13px 36px;background:linear-gradient(135deg,var(--blue),var(--purple));color:#fff;border:none;border-radius:50px;cursor:pointer;box-shadow:0 6px 0 rgba(100,0,200,0.15);transition:all .15s;}
+  .nxt-btn:hover{transform:translateY(-3px);}
+  .nxt-btn.show{display:inline-block;}
+
+  /* COUNTER */
+  .counter-section{max-width:900px;margin:0 auto 60px;padding:0 22px;}
+  .counter-card{background:#fff;border-radius:28px;padding:32px;box-shadow:var(--shadow);text-align:center;}
+  .counter-card h2{font-family:'Fredoka One',cursive;font-size:1.6rem;color:var(--purple);margin-bottom:18px;}
+  .ctr-row{display:flex;align-items:center;justify-content:center;gap:20px;margin-bottom:20px;}
+  .ctr-btn{font-family:'Fredoka One',cursive;font-size:1.8rem;width:58px;height:58px;border-radius:50%;border:3px solid;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .15s;box-shadow:0 5px 0 rgba(0,0,0,0.09);}
+  .ctr-btn:hover{transform:translateY(-3px);}
+  #btn-minus{background:#ffe8e8;border-color:var(--coral);color:var(--coral);}
+  #btn-plus{background:#e8f8ea;border-color:var(--mint);color:var(--mint);}
+  #ctr-num{font-family:'Fredoka One',cursive;font-size:3rem;min-width:70px;text-align:center;}
+  #apple-box{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;min-height:50px;max-width:480px;margin:0 auto;}
+  .apple{font-size:1.9rem;animation:popIn .2s ease both;display:inline-block;}
+
+  /* TIMES TABLE */
+  .table-section{max-width:900px;margin:0 auto 60px;padding:0 22px;}
+  .table-card{background:#fff;border-radius:28px;padding:32px;box-shadow:var(--shadow);}
+  .table-card h2{font-family:'Fredoka One',cursive;font-size:1.6rem;color:var(--orange);margin-bottom:16px;}
+  .t-tabs{display:flex;gap:7px;flex-wrap:wrap;margin-bottom:18px;}
+  .t-btn{font-family:'Fredoka One',cursive;font-size:1rem;padding:8px 15px;border:3px solid #e0e0e0;border-radius:12px;background:#fff;cursor:pointer;transition:all .15s;}
+  .t-btn.active,.t-btn:hover{background:var(--orange);border-color:var(--orange);color:#fff;transform:scale(1.05);}
+  .t-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(128px,1fr));gap:10px;}
+  .t-item{background:linear-gradient(135deg,#fff3e0,#ffe0b2);border:2px solid #ffc87a;border-radius:14px;padding:11px;text-align:center;font-family:'Fredoka One',cursive;font-size:0.95rem;color:#8b4513;animation:popIn .2s ease both;}
+  .t-item .res{font-size:1.35rem;color:var(--orange);display:block;}
+
+  /* SHAPES */
+  .shapes-section{max-width:900px;margin:0 auto 60px;padding:0 22px;}
+  .shapes-card{background:#fff;border-radius:28px;padding:32px;box-shadow:var(--shadow);}
+  .shapes-card h2{font-family:'Fredoka One',cursive;font-size:1.6rem;color:var(--pink);margin-bottom:18px;}
+  .shapes-flex{display:flex;flex-wrap:wrap;gap:18px;justify-content:center;}
+  .sh-card{text-align:center;cursor:pointer;transition:transform .2s;width:105px;}
+  .sh-card:hover{transform:scale(1.12) rotate(-4deg);}
+  .sh-card h4{font-family:'Fredoka One',cursive;font-size:0.92rem;margin-bottom:2px;}
+  .sh-card p{font-size:0.68rem;color:#aaa;font-weight:700;}
+
+  /* FOOTER */
+  footer{background:linear-gradient(135deg,#4D96FF,#C77DFF);color:#fff;text-align:center;padding:28px;font-weight:700;font-size:0.9rem;}
+  footer .f-big{font-family:'Fredoka One',cursive;font-size:1.5rem;margin-bottom:6px;}
+
+  /* CONFETTI */
+  .confetti-layer{position:fixed;inset:0;pointer-events:none;z-index:9999;overflow:hidden;}
+  .conf{position:absolute;top:-20px;border-radius:3px;animation:confFall 2s linear forwards;}
+  @keyframes confFall{0%{transform:translateY(0) rotate(0deg);opacity:1}100%{transform:translateY(110vh) rotate(720deg);opacity:0}}
+
+  /* KEYFRAMES */
+  @keyframes slideIn{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+  @keyframes popIn{from{transform:scale(0.6);opacity:0}to{transform:scale(1);opacity:1}}
+
+  @media(max-width:480px){
+    .ans-grid{grid-template-columns:1fr;}
+    .q-text{font-size:1.9rem;}
+    .logo{font-size:1.5rem;}
+  }
+</style>
+</head>
+<body>
+
+<div class="confetti-layer" id="confetti-layer"></div>
+
+<!-- HEADER -->
+<header>
+  <div class="logo">Unique <span>Academy</span> 🌈</div>
+  <div class="star-pill">⭐ Stars: <span id="star-count">0</span></div>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="floaters">
+    <div class="floater">🕉️</div>
+    <div class="floater">✖️</div>
+    <div class="floater">🔢</div>
+    <div class="floater">⚡</div>
+    <div class="floater">➗</div>
+    <div class="floater">🌟</div>
+  </div>
+  <h1>Learn Maths <span class="hi">With Us!</span> 🎉</h1>
+  <p>Discover the magic of <strong>Vedic Maths</strong> — ancient Indian shortcuts to solve sums super fast!</p>
+  <div class="vedic-badge">🇮🇳 Ancient Wisdom · Modern Learning</div>
+</section>
+
+<!-- VEDIC TOPIC CARDS -->
+<p class="sec-title" style="margin-top:40px;">🕉️ Vedic Maths Tricks</p>
+<p class="sec-sub">Ancient Indian shortcuts that make maths lightning fast!</p>
+<div class="topics">
+  <div class="topic-card tc1" onclick="openLearn('mul11')">
+    <span class="topic-icon">⚡</span>
+    <h3>×11 Trick</h3>
+    <p>Multiply any number by 11</p>
+  </div>
+  <div class="topic-card tc2" onclick="openLearn('sq5')">
+    <span class="topic-icon">🔥</span>
+    <h3>Square of 5s</h3>
+    <p>Square numbers ending in 5</p>
+  </div>
+  <div class="topic-card tc3" onclick="openLearn('near10')">
+    <span class="topic-icon">🌀</span>
+    <h3>Near 10 Rule</h3>
+    <p>Multiply numbers near 10</p>
+  </div>
+  <div class="topic-card tc4" onclick="openLearn('nikhilam')">
+    <span class="topic-icon">🧮</span>
+    <h3>Nikhilam</h3>
+    <p>Subtract from 9s and 10s</p>
+  </div>
+  <div class="topic-card tc5" onclick="openLearn('doubling')">
+    <span class="topic-icon">✌️</span>
+    <h3>Doubling</h3>
+    <p>Double and halve fast</p>
+  </div>
+  <div class="topic-card tc6" onclick="openLearn('digitroot')">
+    <span class="topic-icon">🔮</span>
+    <h3>Digital Root</h3>
+    <p>Magic sum of digits</p>
+  </div>
+</div>
+
+<!-- BASIC MATHS CARDS -->
+<p class="sec-title">📚 Basic Maths</p>
+<p class="sec-sub">Build your foundation — learn the basics step by step!</p>
+<div class="topics">
+  <div class="topic-card tc1" onclick="openLearn('addition')">
+    <span class="topic-icon">➕</span>
+    <h3>Addition</h3>
+    <p>Add numbers together</p>
+  </div>
+  <div class="topic-card tc2" onclick="openLearn('subtraction')">
+    <span class="topic-icon">➖</span>
+    <h3>Subtraction</h3>
+    <p>Take away numbers</p>
+  </div>
+  <div class="topic-card tc3" onclick="openLearn('multiplication')">
+    <span class="topic-icon">✖️</span>
+    <h3>Multiplication</h3>
+    <p>Times tables and groups</p>
+  </div>
+  <div class="topic-card tc4" onclick="openLearn('division')">
+    <span class="topic-icon">➗</span>
+    <h3>Division</h3>
+    <p>Share equally</p>
+  </div>
+  <div class="topic-card tc5" onclick="openLearn('counting')">
+    <span class="topic-icon">🔢</span>
+    <h3>Counting</h3>
+    <p>Count with fun objects</p>
+  </div>
+  <div class="topic-card tc6" onclick="openLearn('shapes')">
+    <span class="topic-icon">🔷</span>
+    <h3>Shapes</h3>
+    <p>Circle, square and more</p>
+  </div>
+</div>
+
+<!-- LEARN PANEL -->
+<div class="learn-panel" id="learn-panel">
+  <div class="learn-card" id="learn-card"></div>
+</div>
+
+<!-- VEDIC LIVE DEMO -->
+<p class="sec-title">🧠 Try a Vedic Trick Live!</p>
+<p class="sec-sub">Press "Next Step" to see the magic unfold one step at a time!</p>
+<div class="vedic-wrap">
+  <div class="vedic-tabs" id="vedic-tabs">
+    <button class="active" data-key="mul11"   onclick="loadDemo('mul11')">⚡ x11</button>
+    <button data-key="sq5"                    onclick="loadDemo('sq5')">🔥 Square 5</button>
+    <button data-key="near10"                 onclick="loadDemo('near10')">🌀 Near 10</button>
+    <button data-key="nikhilam"               onclick="loadDemo('nikhilam')">🧮 Nikhilam</button>
+    <button data-key="doubling"               onclick="loadDemo('doubling')">✌️ Doubling</button>
+  </div>
+  <div id="demo-area"></div>
+</div>
+
+<!-- QUIZ -->
+<p class="sec-title">🎯 Quick Quiz!</p>
+<p class="sec-sub">Test your skills — choose an operation and start answering!</p>
+<div class="quiz-wrap">
+  <div class="op-tabs">
+    <button class="active" id="op-add" onclick="setOp('add')">➕ Add</button>
+    <button id="op-sub" onclick="setOp('sub')">➖ Subtract</button>
+    <button id="op-mul" onclick="setOp('mul')">✖️ Multiply</button>
+  </div>
+  <div class="score-row">
+    <span>Score</span>
+    <div class="s-bar"><div class="s-fill" id="s-fill" style="width:0%"></div></div>
+    <span class="s-num" id="s-num">0 / 0</span>
+  </div>
+  <div class="q-box">
+    <div class="q-label" id="q-label">Question 1</div>
+    <div class="q-text" id="q-text">Loading...</div>
+    <div class="ans-grid" id="ans-grid"></div>
+  </div>
+  <div class="feedback" id="feedback"></div>
+  <button class="nxt-btn" id="nxt-btn" onclick="nextQ()">Next Question ➡️</button>
+</div>
+
+<!-- APPLE COUNTER -->
+<div class="counter-section">
+  <div class="counter-card">
+    <h2>🍎 Count with Apples!</h2>
+    <div class="ctr-row">
+      <button class="ctr-btn" id="btn-minus" onclick="changeCount(-1)">−</button>
+      <div id="ctr-num">0</div>
+      <button class="ctr-btn" id="btn-plus"  onclick="changeCount(1)">+</button>
+    </div>
+    <div id="apple-box"></div>
+  </div>
+</div>
+
+<!-- TIMES TABLE -->
+<div class="table-section">
+  <div class="table-card">
+    <h2>🔢 Times Tables!</h2>
+    <div class="t-tabs" id="t-tabs"></div>
+    <div class="t-grid" id="t-grid"></div>
+  </div>
+</div>
+
+<!-- SHAPES -->
+<div class="shapes-section">
+  <div class="shapes-card">
+    <h2>🔷 Shapes Around Us!</h2>
+    <div class="shapes-flex" id="shapes-flex"></div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="f-big">Learn Vedic Maths! 🕉️🚀</div>
+  <div>Unique Academy – Ancient Wisdom, Modern Learning for Every Child ✨</div>
+</footer>
+
+<script>
+/* ============================================================
+   LEARN CONTENT
+============================================================ */
+var learnData = {
+  mul11: {
+    color: '#FF9A3C',
+    title: '⚡ Multiply Any Number by 11',
+    body: 'The Vedic trick for x11 is instant! Split the digits, add them together for the middle digit. Works for 2-digit numbers in seconds!',
+    examples: ['23 x 11 = 253', '45 x 11 = 495', '36 x 11 = 396', '72 x 11 = 792'],
+    tip: 'For 23 x 11 → write 2, then 2+3=5, then 3 → Answer: 253! Try 45 x 11!'
+  },
+  sq5: {
+    color: '#FF6B6B',
+    title: '🔥 Square Numbers Ending in 5',
+    body: 'Any number ending in 5 is super easy to square! Multiply the tens digit by the next number, then always put 25 at the end.',
+    examples: ['25 x 25 = 625', '35 x 35 = 1225', '45 x 45 = 2025', '75 x 75 = 5625'],
+    tip: 'For 35 squared → 3x4=12, add 25 → 1225. For 45 squared → 4x5=20, add 25 → 2025!'
+  },
+  near10: {
+    color: '#4D96FF',
+    title: '🌀 Near 10 Multiplication',
+    body: 'Numbers close to 10 are quick to multiply using the Vedic base method. Find the distance from 10 for each number, cross-add and multiply!',
+    examples: ['8 x 9 = 72', '7 x 8 = 56', '9 x 7 = 63', '8 x 6 = 48'],
+    tip: 'For 8x9: 8 is -2, 9 is -1. Left: 8+(-1)=7. Right: (-2)x(-1)=2. Answer: 72!'
+  },
+  nikhilam: {
+    color: '#C77DFF',
+    title: '🧮 Nikhilam Sutra',
+    body: 'Nikhilam means all from 9 and the last from 10. It helps you instantly find what a number needs to complete the next power of 10!',
+    examples: ['1000 - 374 = 626', '100 - 57 = 43', '1000 - 829 = 171', '10000 - 2345 = 7655'],
+    tip: 'For 1000-374: subtract 3,7 from 9 = 6,2. Subtract 4 from 10 = 6. Answer: 626!'
+  },
+  doubling: {
+    color: '#6BCB77',
+    title: '✌️ Doubling and Halving',
+    body: 'Doubling means multiplying by 2, halving means dividing by 2. In Vedic Maths you chain doublings to multiply quickly by 4, 8, 16 and more!',
+    examples: ['16 x 4 = 64 (double twice)', '13 x 4 = 52', '18 x 8 = 144', '25 x 8 = 200'],
+    tip: 'To multiply by 4, double twice! 17x4 → 17x2=34 → 34x2=68. Easy!'
+  },
+  digitroot: {
+    color: '#FF84B7',
+    title: '🔮 Digital Root',
+    body: 'The digital root is found by adding all the digits of a number until you get a single digit. Used in Vedic Maths to check if answers are correct!',
+    examples: ['48 → 4+8=12 → 1+2=3', '99 → 18 → 9', '123 → 6', '999 → 27 → 9'],
+    tip: 'The digital root of any multiple of 9 is always 9! Try 18, 27, 36, 45...'
+  },
+  addition: {
+    color: '#FF6B6B',
+    title: '➕ Addition',
+    body: 'Addition means putting numbers together to find the total. Think of it like collecting fruits into a big basket!',
+    examples: ['3 + 2 = 5', '7 + 4 = 11', '10 + 5 = 15', '6 + 6 = 12'],
+    tip: 'Start from the bigger number and count up. For 7+3, start at 7 and count 3 more: 8, 9, 10!'
+  },
+  subtraction: {
+    color: '#6BCB77',
+    title: '➖ Subtraction',
+    body: 'Subtraction means taking away from a number. If you have 8 cookies and eat 3, how many are left?',
+    examples: ['8 - 3 = 5', '10 - 4 = 6', '15 - 7 = 8', '20 - 9 = 11'],
+    tip: 'Count backwards on your fingers! For 10-3, hold 10 fingers and fold 3 down. Count what is left!'
+  },
+  multiplication: {
+    color: '#4D96FF',
+    title: '✖️ Multiplication',
+    body: 'Multiplication is fast adding! Instead of adding the same number many times, we multiply. 3 groups of 4 is written as 3 x 4.',
+    examples: ['3 x 4 = 12', '5 x 5 = 25', '2 x 8 = 16', '6 x 3 = 18'],
+    tip: 'Think groups! 4x3 means 4 groups of 3 apples = 3+3+3+3 = 12 apples!'
+  },
+  division: {
+    color: '#C77DFF',
+    title: '➗ Division',
+    body: 'Division means sharing equally. If you have 12 sweets and share with 3 friends, each gets 12 / 3 = 4 sweets!',
+    examples: ['12 / 3 = 4', '20 / 4 = 5', '15 / 5 = 3', '24 / 6 = 4'],
+    tip: 'Division is the reverse of multiplication! If 3x4=12, then 12/3=4. They are best friends!'
+  },
+  counting: {
+    color: '#FF9A3C',
+    title: '🔢 Counting',
+    body: 'Counting is the first step in maths! We count objects one by one, always starting from 1. Use the Apple Counter below to practice!',
+    examples: ['1, 2, 3, 4...', 'Count by 2s: 2, 4, 6, 8', 'Count by 5s: 5, 10, 15', 'Count by 10s: 10, 20, 30'],
+    tip: 'Use the Apple Counter below to practice counting! Add apples one by one.'
+  },
+  shapes: {
+    color: '#FF84B7',
+    title: '🔷 Shapes',
+    body: 'Shapes are everywhere! A wheel is a circle, a door is a rectangle, and a pizza slice is a triangle. Maths is all around us!',
+    examples: ['Circle - 0 sides', 'Triangle - 3 sides', 'Square - 4 equal sides', 'Rectangle - 4 sides'],
+    tip: 'Count the corners of a shape! A triangle has 3, a square has 4. Try it at home!'
+  }
+};
+
+function openLearn(key) {
+  var d = learnData[key];
+  if (!d) return;
+  var panel = document.getElementById('learn-panel');
+  var card  = document.getElementById('learn-card');
+  card.style.borderLeftColor = d.color;
+  var chips = '';
+  for (var i = 0; i < d.examples.length; i++) {
+    chips += '<div class="eg-chip" style="animation-delay:' + (i * 0.08) + 's">' + d.examples[i] + '</div>';
+  }
+  card.innerHTML =
+    '<h2>' + d.title + '</h2>' +
+    '<p class="lc-body">' + d.body + '</p>' +
+    '<div class="eg-row">' + chips + '</div>' +
+    '<div class="tip-box"><span class="tip-icon">💡</span><p>' + d.tip + '</p></div>' +
+    '<button class="close-btn" onclick="closeLearn()">✖ Close</button>';
+  panel.classList.add('open');
+  panel.scrollIntoView({ behavior: 'smooth', block: 'center' });
+}
+
+function closeLearn() {
+  document.getElementById('learn-panel').classList.remove('open');
+}
+
+/* ============================================================
+   VEDIC LIVE DEMO
+============================================================ */
+var demoKey   = 'mul11';
+var demoSteps = [];
+var demoStep  = 0;
+var demoNum   = 0;
+
+function getSteps(key, n) {
+  if (key === 'mul11') {
+    var d1 = Math.floor(n / 10);
+    var d2 = n % 10;
+    var mid = d1 + d2;
+    if (mid < 10) {
+      return [
+        'Take the number: <strong>' + n + '</strong>',
+        'Keep the first digit: <strong>' + d1 + '</strong>',
+        'Add both digits: ' + d1 + ' + ' + d2 + ' = <strong>' + mid + '</strong>',
+        'Keep the last digit: <strong>' + d2 + '</strong>',
+        'Answer: <strong>' + (n * 11) + '</strong> 🎉'
+      ];
+    } else {
+      return [
+        'Take the number: <strong>' + n + '</strong>',
+        'Keep the first digit: <strong>' + d1 + '</strong>',
+        'Add both digits: ' + d1 + ' + ' + d2 + ' = <strong>' + mid + '</strong> (carry the 1!)',
+        'First digit becomes: ' + d1 + ' + 1 = <strong>' + (d1 + 1) + '</strong>',
+        'Middle digit: <strong>' + (mid % 10) + '</strong>, Last digit: <strong>' + d2 + '</strong>',
+        'Answer: <strong>' + (n * 11) + '</strong> 🎉'
+      ];
+    }
+  }
+  if (key === 'sq5') {
+    var f = Math.floor(n / 10);
+    return [
+      'Take the number: <strong>' + n + '</strong>',
+      'Tens digit: <strong>' + f + '</strong>',
+      'Multiply: ' + f + ' x ' + (f + 1) + ' = <strong>' + (f * (f + 1)) + '</strong>',
+      'Always put <strong>25</strong> at the end',
+      'Answer: <strong>' + (f * (f + 1)) + '25 = ' + (n * n) + '</strong> 🎉'
+    ];
+  }
+  if (key === 'near10') {
+    var pairs = [[8,9],[7,8],[9,8],[6,9],[7,9]];
+    var p = pairs[n % 5];
+    var x = p[0], y = p[1];
+    var dx = x - 10, dy = y - 10;
+    return [
+      'Multiply: <strong>' + x + ' x ' + y + '</strong>',
+      x + ' is ' + Math.abs(dx) + ' less than 10, difference: <strong>' + dx + '</strong>',
+      y + ' is ' + Math.abs(dy) + ' less than 10, difference: <strong>' + dy + '</strong>',
+      'Left part: ' + x + ' + (' + dy + ') = <strong>' + (x + dy) + '</strong>',
+      'Right part: (' + dx + ') x (' + dy + ') = <strong>' + (dx * dy) + '</strong>',
+      'Answer: <strong>' + (x * y) + '</strong> 🎉'
+    ];
+  }
+  if (key === 'nikhilam') {
+    var nn = 100 + Math.floor(n * 37) % 899;
+    if (nn < 100) nn = 374;
+    var a1 = Math.floor(nn / 100);
+    var a2 = Math.floor((nn % 100) / 10);
+    var a3 = nn % 10;
+    var r1 = 9 - a1, r2 = 9 - a2, r3 = 10 - a3;
+    var res = 1000 - nn;
+    return [
+      'Find what makes <strong>' + nn + '</strong> up to 1000',
+      'Hundreds digit: 9 - ' + a1 + ' = <strong>' + r1 + '</strong>',
+      'Tens digit: 9 - ' + a2 + ' = <strong>' + r2 + '</strong>',
+      'Units digit: 10 - ' + a3 + ' = <strong>' + r3 + '</strong>',
+      'Answer: <strong>' + res + '</strong>',
+      'Check: ' + nn + ' + ' + res + ' = <strong>1000</strong> ✅ 🎉'
+    ];
+  }
+  if (key === 'doubling') {
+    var d1x = n * 2, d2x = d1x * 2, d3x = d2x * 2;
+    return [
+      'Take the number: <strong>' + n + '</strong>',
+      'Double once (x2): <strong>' + d1x + '</strong>',
+      'Double again (x4): <strong>' + d2x + '</strong>',
+      'Double once more (x8): <strong>' + d3x + '</strong>',
+      n + ' x 4 = <strong>' + d2x + '</strong> and ' + n + ' x 8 = <strong>' + d3x + '</strong> 🎉'
+    ];
+  }
+  return ['Steps not found'];
+}
+
+var demoInfo = {
+  mul11:    { sutra: 'Sutra: Anurupyena', title: '⚡ Multiply by 11', intro: 'Multiplying by 11 in 3 seconds with Vedic Maths!', rule: 'Write first digit. Add both digits for middle. Write last digit.' },
+  sq5:      { sutra: 'Sutra: Ekadhikena Purvena', title: '🔥 Square of Numbers Ending in 5', intro: 'Numbers ending in 5 are the easiest to square!', rule: 'Multiply tens digit by (tens digit + 1). Put 25 at the end.' },
+  near10:   { sutra: 'Sutra: Nikhilam (Base 10)', title: '🌀 Multiply Numbers Near 10', intro: 'When both numbers are close to 10, use their distance from 10!', rule: 'Find distance from 10. Cross-add for left. Multiply distances for right.' },
+  nikhilam: { sutra: 'Sutra: Nikhilam Navatashcaramam Dashatah', title: '🧮 Nikhilam Subtraction', intro: 'Find the complement of a number instantly!', rule: 'Subtract each digit from 9, and the last digit from 10.' },
+  doubling: { sutra: 'Sutra: Dwandwa Yoga', title: '✌️ Doubling to Multiply', intro: 'Multiply by 4 or 8 by simply doubling!', rule: 'To multiply by 4: double the number twice. To multiply by 8: double three times.' }
+};
+
+function loadDemo(key) {
+  demoKey = key;
+  if (key === 'mul11')    demoNum = 12 + Math.floor(Math.random() * 78);
+  else if (key === 'sq5') { var o = [15,25,35,45,55,65,75,85,95]; demoNum = o[Math.floor(Math.random() * o.length)]; }
+  else                    demoNum = Math.floor(Math.random() * 5);
+  demoSteps = getSteps(key, demoNum);
+  demoStep  = 0;
+
+  var tabs = document.querySelectorAll('#vedic-tabs button');
+  for (var i = 0; i < tabs.length; i++) {
+    if (tabs[i].getAttribute('data-key') === key) tabs[i].classList.add('active');
+    else tabs[i].classList.remove('active');
+  }
+
+  var info = demoInfo[key];
+  var area = document.getElementById('demo-area');
+  area.innerHTML =
+    '<div class="v-box">' +
+      '<div class="sutra-tag">' + info.sutra + '</div>' +
+      '<div class="v-title">' + info.title + '</div>' +
+      '<div class="v-intro">' + info.intro + '</div>' +
+      '<div class="rule-box"><div class="r-label">✨ The Rule</div><p>' + info.rule + '</p></div>' +
+      '<div class="steps-list" id="steps-list"></div>' +
+      '<div class="v-btns">' +
+        '<button class="v-next" id="v-next" onclick="nextDemoStep()">Show Next Step ➡️</button>' +
+        '<button class="v-new" onclick="loadDemo(\'' + key + '\')">🔄 New Number</button>' +
+      '</div>' +
+    '</div>';
+
+  nextDemoStep();
+}
+
+function nextDemoStep() {
+  var list = document.getElementById('steps-list');
+  var btn  = document.getElementById('v-next');
+  if (!list || !btn) return;
+
+  if (demoStep >= demoSteps.length) {
+    btn.textContent = '🎉 Done! Try New Number';
+    btn.onclick = function() { loadDemo(demoKey); };
+    spawnConfetti();
+    return;
+  }
+
+  var el = document.createElement('div');
+  el.className = 'step-item';
+  el.innerHTML = '<span class="step-num">Step ' + (demoStep + 1) + '.</span> ' + demoSteps[demoStep];
+  list.appendChild(el);
+  demoStep++;
+
+  if (demoStep >= demoSteps.length) {
+    btn.textContent = '🎉 See the Magic!';
+  }
+}
+
+/* ============================================================
+   QUIZ
+============================================================ */
+var quizOp       = 'add';
+var quizScore    = 0;
+var quizTotal    = 0;
+var quizAnswered = false;
+var correctAns   = 0;
+var qCount       = 0;
+
+function setOp(op) {
+  quizOp = op;
+  document.getElementById('op-add').classList.remove('active');
+  document.getElementById('op-sub').classList.remove('active');
+  document.getElementById('op-mul').classList.remove('active');
+  document.getElementById('op-' + op.substring(0,3)).classList.add('active');
+  quizScore = 0; quizTotal = 0; qCount = 0;
+  updateScore();
+  genQ();
+}
+
+function genQ() {
+  quizAnswered = false;
+  qCount++;
+  document.getElementById('q-label').textContent = 'Question ' + qCount;
+  document.getElementById('feedback').textContent = '';
+  document.getElementById('feedback').className = 'feedback';
+  document.getElementById('nxt-btn').classList.remove('show');
+
+  var a, b, sym;
+  if (quizOp === 'add') {
+    a = rnd(1, 20); b = rnd(1, 20);
+    correctAns = a + b; sym = '+';
+  } else if (quizOp === 'sub') {
+    a = rnd(5, 20); b = rnd(1, a);
+    correctAns = a - b; sym = '-';
+  } else {
+    a = rnd(1, 10); b = rnd(1, 10);
+    correctAns = a * b; sym = 'x';
+  }
+
+  document.getElementById('q-text').textContent = a + ' ' + sym + ' ' + b + ' = ?';
+
+  var opts = [correctAns];
+  var tries = 0;
+  while (opts.length < 4 && tries < 60) {
+    tries++;
+    var w = correctAns + (Math.floor(Math.random() * 9) - 4);
+    if (w > 0 && opts.indexOf(w) === -1) opts.push(w);
+  }
+  opts.sort(function() { return Math.random() - 0.5; });
+
+  var grid = document.getElementById('ans-grid');
+  grid.innerHTML = '';
+  for (var i = 0; i < opts.length; i++) {
+    (function(val) {
+      var btn = document.createElement('button');
+      btn.className = 'ans-btn';
+      btn.textContent = val;
+      btn.onclick = function() { checkAns(val, btn); };
+      grid.appendChild(btn);
+    })(opts[i]);
+  }
+}
+
+function checkAns(val, btn) {
+  if (quizAnswered) return;
+  quizAnswered = true;
+  quizTotal++;
+  var fb = document.getElementById('feedback');
+  if (val === correctAns) {
+    quizScore++;
+    btn.classList.add('correct');
+    var msgs = ['Amazing! 🎉', 'Correct! ⭐', 'You are a Star! 🌟', 'Brilliant! 🏆'];
+    fb.textContent = msgs[Math.floor(Math.random() * 4)];
+    fb.className = 'feedback ok';
+    addStar();
+    spawnConfetti();
+  } else {
+    btn.classList.add('wrong');
+    var allBtns = document.querySelectorAll('.ans-btn');
+    for (var i = 0; i < allBtns.length; i++) {
+      if (parseInt(allBtns[i].textContent) === correctAns) {
+        allBtns[i].classList.add('correct');
+      }
+    }
+    fb.textContent = 'Not quite! The answer is ' + correctAns + ' 💪';
+    fb.className = 'feedback err';
+  }
+  var ab = document.querySelectorAll('.ans-btn');
+  for (var j = 0; j < ab.length; j++) ab[j].disabled = true;
+  updateScore();
+  document.getElementById('nxt-btn').classList.add('show');
+}
+
+function nextQ() { genQ(); }
+
+function updateScore() {
+  var pct = quizTotal > 0 ? Math.round(quizScore / quizTotal * 100) : 0;
+  document.getElementById('s-fill').style.width = pct + '%';
+  document.getElementById('s-num').textContent = quizScore + ' / ' + quizTotal;
+}
+
+/* ============================================================
+   STARS AND CONFETTI
+============================================================ */
+var starCount = 0;
+function addStar() {
+  starCount++;
+  document.getElementById('star-count').textContent = starCount;
+}
+
+function spawnConfetti() {
+  var colors = ['#FFD93D','#FF6B6B','#6BCB77','#4D96FF','#C77DFF','#FF9A3C','#FF84B7'];
+  var layer  = document.getElementById('confetti-layer');
+  for (var i = 0; i < 28; i++) {
+    (function() {
+      var c = document.createElement('div');
+      c.className = 'conf';
+      c.style.left              = (Math.random() * 100) + '%';
+      c.style.background        = colors[Math.floor(Math.random() * colors.length)];
+      c.style.animationDuration = (1.2 + Math.random() * 1.2) + 's';
+      c.style.animationDelay    = (Math.random() * 0.4) + 's';
+      c.style.width             = (8 + Math.random() * 8) + 'px';
+      c.style.height            = (8 + Math.random() * 8) + 'px';
+      layer.appendChild(c);
+      setTimeout(function() { if (c && c.parentNode) c.parentNode.removeChild(c); }, 3000);
+    })();
+  }
+}
+
+/* ============================================================
+   APPLE COUNTER
+============================================================ */
+var appleCount = 0;
+function changeCount(d) {
+  appleCount = Math.max(0, Math.min(20, appleCount + d));
+  document.getElementById('ctr-num').textContent = appleCount;
+  var box = document.getElementById('apple-box');
+  box.innerHTML = '';
+  for (var i = 0; i < appleCount; i++) {
+    var a = document.createElement('span');
+    a.className = 'apple';
+    a.textContent = '🍎';
+    a.style.animationDelay = (i * 0.04) + 's';
+    box.appendChild(a);
+  }
+}
+
+/* ============================================================
+   TIMES TABLES
+============================================================ */
+var selTable = 2;
+function buildTableTabs() {
+  var tabs = document.getElementById('t-tabs');
+  for (var i = 1; i <= 12; i++) {
+    (function(n) {
+      var b = document.createElement('button');
+      b.className = 't-btn' + (n === 2 ? ' active' : '');
+      b.textContent = n;
+      b.onclick = function() {
+        selTable = n;
+        var all = document.querySelectorAll('.t-btn');
+        for (var j = 0; j < all.length; j++) all[j].classList.remove('active');
+        b.classList.add('active');
+        buildTableGrid();
+      };
+      tabs.appendChild(b);
+    })(i);
+  }
+}
+
+function buildTableGrid() {
+  var g = document.getElementById('t-grid');
+  g.innerHTML = '';
+  for (var i = 1; i <= 12; i++) {
+    var d = document.createElement('div');
+    d.className = 't-item';
+    d.style.animationDelay = ((i - 1) * 0.04) + 's';
+    d.innerHTML = selTable + ' x ' + i + ' = <span class="res">' + (selTable * i) + '</span>';
+    g.appendChild(d);
+  }
+}
+
+/* ============================================================
+   SHAPES
+============================================================ */
+var shapesData = [
+  { name: 'Circle',    sides: '0 sides',       svg: '<svg width="80" height="80" viewBox="0 0 80 80"><circle cx="40" cy="40" r="34" fill="#FF6B6B" opacity=".85"/></svg>' },
+  { name: 'Triangle',  sides: '3 sides',        svg: '<svg width="80" height="80" viewBox="0 0 80 80"><polygon points="40,8 74,72 6,72" fill="#4D96FF" opacity=".85"/></svg>' },
+  { name: 'Square',    sides: '4 equal sides',  svg: '<svg width="80" height="80" viewBox="0 0 80 80"><rect x="10" y="10" width="60" height="60" fill="#6BCB77" opacity=".85" rx="6"/></svg>' },
+  { name: 'Rectangle', sides: '4 sides',        svg: '<svg width="80" height="80" viewBox="0 0 80 80"><rect x="4" y="18" width="72" height="44" fill="#C77DFF" opacity=".85" rx="6"/></svg>' },
+  { name: 'Pentagon',  sides: '5 sides',        svg: '<svg width="80" height="80" viewBox="0 0 80 80"><polygon points="40,6 74,30 62,70 18,70 6,30" fill="#FF9A3C" opacity=".85"/></svg>' },
+  { name: 'Hexagon',   sides: '6 sides',        svg: '<svg width="80" height="80" viewBox="0 0 80 80"><polygon points="40,5 72,22 72,58 40,75 8,58 8,22" fill="#FFD93D" opacity=".85"/></svg>' },
+  { name: 'Star',      sides: '5 points',       svg: '<svg width="80" height="80" viewBox="0 0 80 80"><polygon points="40,5 48,28 74,28 53,44 61,68 40,53 19,68 27,44 6,28 32,28" fill="#FF84B7" opacity=".85"/></svg>' },
+  { name: 'Oval',      sides: '0 sides',        svg: '<svg width="80" height="80" viewBox="0 0 80 80"><ellipse cx="40" cy="40" rx="36" ry="24" fill="#4D96FF" opacity=".85"/></svg>' }
+];
+
+function buildShapes() {
+  var flex = document.getElementById('shapes-flex');
+  for (var i = 0; i < shapesData.length; i++) {
+    (function(s) {
+      var d = document.createElement('div');
+      d.className = 'sh-card';
+      d.innerHTML = s.svg + '<h4>' + s.name + '</h4><p>' + s.sides + '</p>';
+      d.onclick = function() {
+        d.style.transform = 'scale(1.2) rotate(-5deg)';
+        setTimeout(function() { d.style.transform = ''; }, 300);
+      };
+      flex.appendChild(d);
+    })(shapesData[i]);
+  }
+}
+
+/* ============================================================
+   UTILITY
+============================================================ */
+function rnd(a, b) { return a + Math.floor(Math.random() * (b - a + 1)); }
+
+/* ============================================================
+   INIT
+============================================================ */
+loadDemo('mul11');
+genQ();
+buildTableTabs();
+buildTableGrid();
+buildShapes();
+</script>
+</body>
+</html>
