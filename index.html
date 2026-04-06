@@ -44,12 +44,13 @@
 
   /* TOPIC GRID */
   .topics{display:grid;grid-template-columns:repeat(auto-fit,minmax(155px,1fr));gap:18px;max-width:920px;margin:0 auto 50px;padding:0 22px;}
-  .topic-card{background:#fff;border-radius:var(--r);padding:26px 14px 18px;text-align:center;cursor:pointer;box-shadow:var(--shadow);transition:transform .15s,box-shadow .15s;position:relative;overflow:hidden;}
+  .topic-card{background:#fff;border-radius:var(--r);padding:26px 14px 18px;text-align:center;cursor:pointer;box-shadow:var(--shadow);transition:transform .15s,box-shadow .15s;position:relative;overflow:hidden;border:none;width:100%;font-family:inherit;}
   .topic-card::before{content:'';position:absolute;top:0;left:0;right:0;height:6px;border-radius:24px 24px 0 0;}
   .tc1::before{background:var(--coral)} .tc2::before{background:var(--mint)}
   .tc3::before{background:var(--blue)}  .tc4::before{background:var(--purple)}
   .tc5::before{background:var(--orange)}.tc6::before{background:var(--pink)}
   .topic-card:hover{transform:translateY(-6px);box-shadow:0 14px 0 rgba(0,0,0,0.09);}
+  .topic-card:focus{outline:3px solid var(--blue);outline-offset:2px;}
   .topic-icon{font-size:2.6rem;display:block;margin-bottom:10px;}
   .topic-card h3{font-family:'Fredoka One',cursive;font-size:1.05rem;margin-bottom:4px;}
   .topic-card p{font-size:0.77rem;color:#999;font-weight:700;}
@@ -197,72 +198,72 @@
 <p class="sec-title" style="margin-top:40px;">🕉️ Vedic Maths Tricks</p>
 <p class="sec-sub">Ancient Indian shortcuts that make maths lightning fast!</p>
 <div class="topics">
-  <div class="topic-card tc1" onclick="openLearn('mul11')">
+  <button class="topic-card tc1" onclick="openLearn('mul11')" aria-label="Multiply by 11 trick">
     <span class="topic-icon">⚡</span>
     <h3>×11 Trick</h3>
     <p>Multiply any number by 11</p>
-  </div>
-  <div class="topic-card tc2" onclick="openLearn('sq5')">
+  </button>
+  <button class="topic-card tc2" onclick="openLearn('sq5')" aria-label="Square of numbers ending in 5">
     <span class="topic-icon">🔥</span>
     <h3>Square of 5s</h3>
     <p>Square numbers ending in 5</p>
-  </div>
-  <div class="topic-card tc3" onclick="openLearn('near10')">
+  </button>
+  <button class="topic-card tc3" onclick="openLearn('near10')" aria-label="Near 10 multiplication rule">
     <span class="topic-icon">🌀</span>
     <h3>Near 10 Rule</h3>
     <p>Multiply numbers near 10</p>
-  </div>
-  <div class="topic-card tc4" onclick="openLearn('nikhilam')">
+  </button>
+  <button class="topic-card tc4" onclick="openLearn('nikhilam')" aria-label="Nikhilam sutra subtraction">
     <span class="topic-icon">🧮</span>
     <h3>Nikhilam</h3>
     <p>Subtract from 9s and 10s</p>
-  </div>
-  <div class="topic-card tc5" onclick="openLearn('doubling')">
+  </button>
+  <button class="topic-card tc5" onclick="openLearn('doubling')" aria-label="Doubling and halving technique">
     <span class="topic-icon">✌️</span>
     <h3>Doubling</h3>
     <p>Double and halve fast</p>
-  </div>
-  <div class="topic-card tc6" onclick="openLearn('digitroot')">
+  </button>
+  <button class="topic-card tc6" onclick="openLearn('digitroot')" aria-label="Digital root technique">
     <span class="topic-icon">🔮</span>
     <h3>Digital Root</h3>
     <p>Magic sum of digits</p>
-  </div>
+  </button>
 </div>
 
 <!-- BASIC MATHS CARDS -->
 <p class="sec-title">📚 Basic Maths</p>
 <p class="sec-sub">Build your foundation — learn the basics step by step!</p>
 <div class="topics">
-  <div class="topic-card tc1" onclick="openLearn('addition')">
+  <button class="topic-card tc1" onclick="openLearn('addition')" aria-label="Learn addition">
     <span class="topic-icon">➕</span>
     <h3>Addition</h3>
     <p>Add numbers together</p>
-  </div>
-  <div class="topic-card tc2" onclick="openLearn('subtraction')">
+  </button>
+  <button class="topic-card tc2" onclick="openLearn('subtraction')" aria-label="Learn subtraction">
     <span class="topic-icon">➖</span>
     <h3>Subtraction</h3>
     <p>Take away numbers</p>
-  </div>
-  <div class="topic-card tc3" onclick="openLearn('multiplication')">
+  </button>
+  <button class="topic-card tc3" onclick="openLearn('multiplication')" aria-label="Learn multiplication">
     <span class="topic-icon">✖️</span>
     <h3>Multiplication</h3>
     <p>Times tables and groups</p>
-  </div>
-  <div class="topic-card tc4" onclick="openLearn('division')">
+  </button>
+  <button class="topic-card tc4" onclick="openLearn('division')" aria-label="Learn division">
     <span class="topic-icon">➗</span>
     <h3>Division</h3>
     <p>Share equally</p>
-  </div>
-  <div class="topic-card tc5" onclick="openLearn('counting')">
+  </button>
+  <button class="topic-card tc5" onclick="openLearn('counting')" aria-label="Learn counting">
     <span class="topic-icon">🔢</span>
     <h3>Counting</h3>
     <p>Count with fun objects</p>
-  </div>
-  <div class="topic-card tc6" onclick="openLearn('shapes')">
+  </button>
+  <button class="topic-card tc6" onclick="openLearn('shapes')" aria-label="Learn about shapes">
     <span class="topic-icon">🔷</span>
     <h3>Shapes</h3>
     <p>Circle, square and more</p>
-  </div>
+  </button>
 </div>
 
 <!-- LEARN PANEL -->
@@ -296,14 +297,14 @@
   <div class="score-row">
     <span>Score</span>
     <div class="s-bar"><div class="s-fill" id="s-fill" style="width:0%"></div></div>
-    <span class="s-num" id="s-num">0 / 0</span>
+    <span class="s-num" id="s-num" aria-live="polite">0 / 0</span>
   </div>
   <div class="q-box">
     <div class="q-label" id="q-label">Question 1</div>
     <div class="q-text" id="q-text">Loading...</div>
     <div class="ans-grid" id="ans-grid"></div>
   </div>
-  <div class="feedback" id="feedback"></div>
+  <div class="feedback" id="feedback" role="status" aria-live="polite"></div>
   <button class="nxt-btn" id="nxt-btn" onclick="nextQ()">Next Question ➡️</button>
 </div>
 
@@ -347,7 +348,7 @@
 /* ============================================================
    LEARN CONTENT
 ============================================================ */
-var learnData = {
+const learnData = {
   mul11: {
     color: '#FF9A3C',
     title: '⚡ Multiply Any Number by 11',
@@ -435,13 +436,13 @@ var learnData = {
 };
 
 function openLearn(key) {
-  var d = learnData[key];
+  const d = learnData[key];
   if (!d) return;
-  var panel = document.getElementById('learn-panel');
-  var card  = document.getElementById('learn-card');
+  const panel = document.getElementById('learn-panel');
+  const card  = document.getElementById('learn-card');
   card.style.borderLeftColor = d.color;
-  var chips = '';
-  for (var i = 0; i < d.examples.length; i++) {
+  let chips = '';
+  for (let i = 0; i < d.examples.length; i++) {
     chips += '<div class="eg-chip" style="animation-delay:' + (i * 0.08) + 's">' + d.examples[i] + '</div>';
   }
   card.innerHTML =
@@ -461,16 +462,16 @@ function closeLearn() {
 /* ============================================================
    VEDIC LIVE DEMO
 ============================================================ */
-var demoKey   = 'mul11';
-var demoSteps = [];
-var demoStep  = 0;
-var demoNum   = 0;
+let demoKey   = 'mul11';
+let demoSteps = [];
+let demoStep  = 0;
+let demoNum   = 0;
 
 function getSteps(key, n) {
   if (key === 'mul11') {
-    var d1 = Math.floor(n / 10);
-    var d2 = n % 10;
-    var mid = d1 + d2;
+    const d1 = Math.floor(n / 10);
+    const d2 = n % 10;
+    const mid = d1 + d2;
     if (mid < 10) {
       return [
         'Take the number: <strong>' + n + '</strong>',
@@ -491,7 +492,7 @@ function getSteps(key, n) {
     }
   }
   if (key === 'sq5') {
-    var f = Math.floor(n / 10);
+    const f = Math.floor(n / 10);
     return [
       'Take the number: <strong>' + n + '</strong>',
       'Tens digit: <strong>' + f + '</strong>',
@@ -501,10 +502,10 @@ function getSteps(key, n) {
     ];
   }
   if (key === 'near10') {
-    var pairs = [[8,9],[7,8],[9,8],[6,9],[7,9]];
-    var p = pairs[n % 5];
-    var x = p[0], y = p[1];
-    var dx = x - 10, dy = y - 10;
+    const pairs = [[8,9],[7,8],[9,8],[6,9],[7,9]];
+    const p = pairs[n % 5];
+    const x = p[0], y = p[1];
+    const dx = x - 10, dy = y - 10;
     return [
       'Multiply: <strong>' + x + ' x ' + y + '</strong>',
       x + ' is ' + Math.abs(dx) + ' less than 10, difference: <strong>' + dx + '</strong>',
@@ -515,13 +516,13 @@ function getSteps(key, n) {
     ];
   }
   if (key === 'nikhilam') {
-    var nn = 100 + Math.floor(n * 37) % 899;
+    let nn = 100 + Math.floor(n * 37) % 899;
     if (nn < 100) nn = 374;
-    var a1 = Math.floor(nn / 100);
-    var a2 = Math.floor((nn % 100) / 10);
-    var a3 = nn % 10;
-    var r1 = 9 - a1, r2 = 9 - a2, r3 = 10 - a3;
-    var res = 1000 - nn;
+    const a1 = Math.floor(nn / 100);
+    const a2 = Math.floor((nn % 100) / 10);
+    const a3 = nn % 10;
+    const r1 = 9 - a1, r2 = 9 - a2, r3 = 10 - a3;
+    const res = 1000 - nn;
     return [
       'Find what makes <strong>' + nn + '</strong> up to 1000',
       'Hundreds digit: 9 - ' + a1 + ' = <strong>' + r1 + '</strong>',
@@ -532,7 +533,7 @@ function getSteps(key, n) {
     ];
   }
   if (key === 'doubling') {
-    var d1x = n * 2, d2x = d1x * 2, d3x = d2x * 2;
+    const d1x = n * 2, d2x = d1x * 2, d3x = d2x * 2;
     return [
       'Take the number: <strong>' + n + '</strong>',
       'Double once (x2): <strong>' + d1x + '</strong>',
@@ -544,7 +545,7 @@ function getSteps(key, n) {
   return ['Steps not found'];
 }
 
-var demoInfo = {
+const demoInfo = {
   mul11:    { sutra: 'Sutra: Anurupyena', title: '⚡ Multiply by 11', intro: 'Multiplying by 11 in 3 seconds with Vedic Maths!', rule: 'Write first digit. Add both digits for middle. Write last digit.' },
   sq5:      { sutra: 'Sutra: Ekadhikena Purvena', title: '🔥 Square of Numbers Ending in 5', intro: 'Numbers ending in 5 are the easiest to square!', rule: 'Multiply tens digit by (tens digit + 1). Put 25 at the end.' },
   near10:   { sutra: 'Sutra: Nikhilam (Base 10)', title: '🌀 Multiply Numbers Near 10', intro: 'When both numbers are close to 10, use their distance from 10!', rule: 'Find distance from 10. Cross-add for left. Multiply distances for right.' },
@@ -555,19 +556,19 @@ var demoInfo = {
 function loadDemo(key) {
   demoKey = key;
   if (key === 'mul11')    demoNum = 12 + Math.floor(Math.random() * 78);
-  else if (key === 'sq5') { var o = [15,25,35,45,55,65,75,85,95]; demoNum = o[Math.floor(Math.random() * o.length)]; }
+  else if (key === 'sq5') { const o = [15,25,35,45,55,65,75,85,95]; demoNum = o[Math.floor(Math.random() * o.length)]; }
   else                    demoNum = Math.floor(Math.random() * 5);
   demoSteps = getSteps(key, demoNum);
   demoStep  = 0;
 
-  var tabs = document.querySelectorAll('#vedic-tabs button');
-  for (var i = 0; i < tabs.length; i++) {
+  const tabs = document.querySelectorAll('#vedic-tabs button');
+  for (let i = 0; i < tabs.length; i++) {
     if (tabs[i].getAttribute('data-key') === key) tabs[i].classList.add('active');
     else tabs[i].classList.remove('active');
   }
 
-  var info = demoInfo[key];
-  var area = document.getElementById('demo-area');
+  const info = demoInfo[key];
+  const area = document.getElementById('demo-area');
   area.innerHTML =
     '<div class="v-box">' +
       '<div class="sutra-tag">' + info.sutra + '</div>' +
@@ -585,18 +586,18 @@ function loadDemo(key) {
 }
 
 function nextDemoStep() {
-  var list = document.getElementById('steps-list');
-  var btn  = document.getElementById('v-next');
+  const list = document.getElementById('steps-list');
+  const btn  = document.getElementById('v-next');
   if (!list || !btn) return;
 
   if (demoStep >= demoSteps.length) {
     btn.textContent = '🎉 Done! Try New Number';
-    btn.onclick = function() { loadDemo(demoKey); };
+    btn.onclick = () => { loadDemo(demoKey); };
     spawnConfetti();
     return;
   }
 
-  var el = document.createElement('div');
+  const el = document.createElement('div');
   el.className = 'step-item';
   el.innerHTML = '<span class="step-num">Step ' + (demoStep + 1) + '.</span> ' + demoSteps[demoStep];
   list.appendChild(el);
@@ -610,12 +611,12 @@ function nextDemoStep() {
 /* ============================================================
    QUIZ
 ============================================================ */
-var quizOp       = 'add';
-var quizScore    = 0;
-var quizTotal    = 0;
-var quizAnswered = false;
-var correctAns   = 0;
-var qCount       = 0;
+let quizOp       = 'add';
+let quizScore    = 0;
+let quizTotal    = 0;
+let quizAnswered = false;
+let correctAns   = 0;
+let qCount       = 0;
 
 function setOp(op) {
   quizOp = op;
@@ -636,7 +637,7 @@ function genQ() {
   document.getElementById('feedback').className = 'feedback';
   document.getElementById('nxt-btn').classList.remove('show');
 
-  var a, b, sym;
+  let a, b, sym;
   if (quizOp === 'add') {
     a = rnd(1, 20); b = rnd(1, 20);
     correctAns = a + b; sym = '+';
@@ -650,25 +651,23 @@ function genQ() {
 
   document.getElementById('q-text').textContent = a + ' ' + sym + ' ' + b + ' = ?';
 
-  var opts = [correctAns];
-  var tries = 0;
-  while (opts.length < 4 && tries < 60) {
-    tries++;
-    var w = correctAns + (Math.floor(Math.random() * 9) - 4);
-    if (w > 0 && opts.indexOf(w) === -1) opts.push(w);
+  const opts = [correctAns];
+  while (opts.length < 4) {
+    const w = correctAns + Math.floor(Math.random() * 9) - 4;
+    if (w > 0 && w !== correctAns && !opts.includes(w)) opts.push(w);
   }
-  opts.sort(function() { return Math.random() - 0.5; });
+  opts.sort(() => Math.random() - 0.5);
 
-  var grid = document.getElementById('ans-grid');
+  const grid = document.getElementById('ans-grid');
   grid.innerHTML = '';
-  for (var i = 0; i < opts.length; i++) {
-    (function(val) {
-      var btn = document.createElement('button');
-      btn.className = 'ans-btn';
-      btn.textContent = val;
-      btn.onclick = function() { checkAns(val, btn); };
-      grid.appendChild(btn);
-    })(opts[i]);
+  for (let i = 0; i < opts.length; i++) {
+    const val = opts[i];
+    const btn = document.createElement('button');
+    btn.className = 'ans-btn';
+    btn.textContent = val;
+    btn.setAttribute('aria-label', 'Answer option ' + val);
+    btn.onclick = () => checkAns(val, btn);
+    grid.appendChild(btn);
   }
 }
 
@@ -676,19 +675,19 @@ function checkAns(val, btn) {
   if (quizAnswered) return;
   quizAnswered = true;
   quizTotal++;
-  var fb = document.getElementById('feedback');
+  const fb = document.getElementById('feedback');
   if (val === correctAns) {
     quizScore++;
     btn.classList.add('correct');
-    var msgs = ['Amazing! 🎉', 'Correct! ⭐', 'You are a Star! 🌟', 'Brilliant! 🏆'];
-    fb.textContent = msgs[Math.floor(Math.random() * 4)];
+    const msgs = ['Amazing! 🎉', 'Correct! ⭐', 'You are a Star! 🌟', 'Brilliant! 🏆'];
+    fb.textContent = msgs[Math.floor(Math.random() * msgs.length)];
     fb.className = 'feedback ok';
     addStar();
     spawnConfetti();
   } else {
     btn.classList.add('wrong');
-    var allBtns = document.querySelectorAll('.ans-btn');
-    for (var i = 0; i < allBtns.length; i++) {
+    const allBtns = document.querySelectorAll('.ans-btn');
+    for (let i = 0; i < allBtns.length; i++) {
       if (parseInt(allBtns[i].textContent) === correctAns) {
         allBtns[i].classList.add('correct');
       }
@@ -696,8 +695,8 @@ function checkAns(val, btn) {
     fb.textContent = 'Not quite! The answer is ' + correctAns + ' 💪';
     fb.className = 'feedback err';
   }
-  var ab = document.querySelectorAll('.ans-btn');
-  for (var j = 0; j < ab.length; j++) ab[j].disabled = true;
+  const ab = document.querySelectorAll('.ans-btn');
+  for (let j = 0; j < ab.length; j++) ab[j].disabled = true;
   updateScore();
   document.getElementById('nxt-btn').classList.add('show');
 }
@@ -705,7 +704,7 @@ function checkAns(val, btn) {
 function nextQ() { genQ(); }
 
 function updateScore() {
-  var pct = quizTotal > 0 ? Math.round(quizScore / quizTotal * 100) : 0;
+  const pct = quizTotal > 0 ? Math.round(quizScore / quizTotal * 100) : 0;
   document.getElementById('s-fill').style.width = pct + '%';
   document.getElementById('s-num').textContent = quizScore + ' / ' + quizTotal;
 }
@@ -713,42 +712,42 @@ function updateScore() {
 /* ============================================================
    STARS AND CONFETTI
 ============================================================ */
-var starCount = 0;
+let starCount = parseInt(localStorage.getItem('vedicStars') || '0');
 function addStar() {
   starCount++;
+  localStorage.setItem('vedicStars', starCount);
   document.getElementById('star-count').textContent = starCount;
 }
 
 function spawnConfetti() {
-  var colors = ['#FFD93D','#FF6B6B','#6BCB77','#4D96FF','#C77DFF','#FF9A3C','#FF84B7'];
-  var layer  = document.getElementById('confetti-layer');
-  for (var i = 0; i < 28; i++) {
-    (function() {
-      var c = document.createElement('div');
-      c.className = 'conf';
-      c.style.left              = (Math.random() * 100) + '%';
-      c.style.background        = colors[Math.floor(Math.random() * colors.length)];
-      c.style.animationDuration = (1.2 + Math.random() * 1.2) + 's';
-      c.style.animationDelay    = (Math.random() * 0.4) + 's';
-      c.style.width             = (8 + Math.random() * 8) + 'px';
-      c.style.height            = (8 + Math.random() * 8) + 'px';
-      layer.appendChild(c);
-      setTimeout(function() { if (c && c.parentNode) c.parentNode.removeChild(c); }, 3000);
-    })();
+  const colors = ['#FFD93D','#FF6B6B','#6BCB77','#4D96FF','#C77DFF','#FF9A3C','#FF84B7'];
+  const layer  = document.getElementById('confetti-layer');
+  // Limit confetti to 12 particles for performance
+  for (let i = 0; i < 12; i++) {
+    const c = document.createElement('div');
+    c.className = 'conf';
+    c.style.left              = (Math.random() * 100) + '%';
+    c.style.background        = colors[Math.floor(Math.random() * colors.length)];
+    c.style.animationDuration = (1.2 + Math.random() * 1.2) + 's';
+    c.style.animationDelay    = (Math.random() * 0.4) + 's';
+    c.style.width             = (8 + Math.random() * 8) + 'px';
+    c.style.height            = (8 + Math.random() * 8) + 'px';
+    layer.appendChild(c);
+    setTimeout(() => { if (c && c.parentNode) c.parentNode.removeChild(c); }, 3000);
   }
 }
 
 /* ============================================================
    APPLE COUNTER
 ============================================================ */
-var appleCount = 0;
+let appleCount = 0;
 function changeCount(d) {
   appleCount = Math.max(0, Math.min(20, appleCount + d));
   document.getElementById('ctr-num').textContent = appleCount;
-  var box = document.getElementById('apple-box');
+  const box = document.getElementById('apple-box');
   box.innerHTML = '';
-  for (var i = 0; i < appleCount; i++) {
-    var a = document.createElement('span');
+  for (let i = 0; i < appleCount; i++) {
+    const a = document.createElement('span');
     a.className = 'apple';
     a.textContent = '🍎';
     a.style.animationDelay = (i * 0.04) + 's';
@@ -759,31 +758,30 @@ function changeCount(d) {
 /* ============================================================
    TIMES TABLES
 ============================================================ */
-var selTable = 2;
+let selTable = 2;
 function buildTableTabs() {
-  var tabs = document.getElementById('t-tabs');
-  for (var i = 1; i <= 12; i++) {
-    (function(n) {
-      var b = document.createElement('button');
-      b.className = 't-btn' + (n === 2 ? ' active' : '');
-      b.textContent = n;
-      b.onclick = function() {
-        selTable = n;
-        var all = document.querySelectorAll('.t-btn');
-        for (var j = 0; j < all.length; j++) all[j].classList.remove('active');
-        b.classList.add('active');
-        buildTableGrid();
-      };
-      tabs.appendChild(b);
-    })(i);
+  const tabs = document.getElementById('t-tabs');
+  for (let i = 1; i <= 12; i++) {
+    const n = i;
+    const b = document.createElement('button');
+    b.className = 't-btn' + (n === 2 ? ' active' : '');
+    b.textContent = n;
+    b.onclick = () => {
+      selTable = n;
+      const all = document.querySelectorAll('.t-btn');
+      for (let j = 0; j < all.length; j++) all[j].classList.remove('active');
+      b.classList.add('active');
+      buildTableGrid();
+    };
+    tabs.appendChild(b);
   }
 }
 
 function buildTableGrid() {
-  var g = document.getElementById('t-grid');
+  const g = document.getElementById('t-grid');
   g.innerHTML = '';
-  for (var i = 1; i <= 12; i++) {
-    var d = document.createElement('div');
+  for (let i = 1; i <= 12; i++) {
+    const d = document.createElement('div');
     d.className = 't-item';
     d.style.animationDelay = ((i - 1) * 0.04) + 's';
     d.innerHTML = selTable + ' x ' + i + ' = <span class="res">' + (selTable * i) + '</span>';
@@ -794,7 +792,7 @@ function buildTableGrid() {
 /* ============================================================
    SHAPES
 ============================================================ */
-var shapesData = [
+const shapesData = [
   { name: 'Circle',    sides: '0 sides',       svg: '<svg width="80" height="80" viewBox="0 0 80 80"><circle cx="40" cy="40" r="34" fill="#FF6B6B" opacity=".85"/></svg>' },
   { name: 'Triangle',  sides: '3 sides',        svg: '<svg width="80" height="80" viewBox="0 0 80 80"><polygon points="40,8 74,72 6,72" fill="#4D96FF" opacity=".85"/></svg>' },
   { name: 'Square',    sides: '4 equal sides',  svg: '<svg width="80" height="80" viewBox="0 0 80 80"><rect x="10" y="10" width="60" height="60" fill="#6BCB77" opacity=".85" rx="6"/></svg>' },
@@ -806,18 +804,17 @@ var shapesData = [
 ];
 
 function buildShapes() {
-  var flex = document.getElementById('shapes-flex');
-  for (var i = 0; i < shapesData.length; i++) {
-    (function(s) {
-      var d = document.createElement('div');
-      d.className = 'sh-card';
-      d.innerHTML = s.svg + '<h4>' + s.name + '</h4><p>' + s.sides + '</p>';
-      d.onclick = function() {
-        d.style.transform = 'scale(1.2) rotate(-5deg)';
-        setTimeout(function() { d.style.transform = ''; }, 300);
-      };
-      flex.appendChild(d);
-    })(shapesData[i]);
+  const flex = document.getElementById('shapes-flex');
+  for (let i = 0; i < shapesData.length; i++) {
+    const s = shapesData[i];
+    const d = document.createElement('div');
+    d.className = 'sh-card';
+    d.innerHTML = s.svg + '<h4>' + s.name + '</h4><p>' + s.sides + '</p>';
+    d.onclick = () => {
+      d.style.transform = 'scale(1.2) rotate(-5deg)';
+      setTimeout(() => { d.style.transform = ''; }, 300);
+    };
+    flex.appendChild(d);
   }
 }
 
@@ -829,6 +826,7 @@ function rnd(a, b) { return a + Math.floor(Math.random() * (b - a + 1)); }
 /* ============================================================
    INIT
 ============================================================ */
+document.getElementById('star-count').textContent = starCount;
 loadDemo('mul11');
 genQ();
 buildTableTabs();
